@@ -1,52 +1,37 @@
-# import urllib.request
 import socket
 import ssl
-# TODO Consider supporting Python 2
-
 
 __version__ = "0.1.0"
-
-
-# class NoRedirection(urllib.request.HTTPErrorProcessor):
-#     def http_response(self, request, response):
-#         return response
-#     https_response = http_response
 
 
 def check_pypi_name(pypi_package_name, pypi_registry_host=None):
     """
     Check if a package name exists on pypi.
-    
-    TODO: Document the Registry URL construction. 
+
+    TODO: Document the Registry URL construction.
         It may not be obvious how pypi_package_name and pypi_registry_host are used
         I'm appending the simple HTTP API parts of the registry standard specification.
-    
-    It will return True if the package name, or any equivalent variation as defined by PEP 503 normalisation  
-    rules (https://www.python.org/dev/peps/pep-0503/#normalized-names) is registered in the PyPI registry.
-    
+
+    It will return True if the package name, or any equivalent variation as defined by PEP 503 normalisation
+     rules (https://www.python.org/dev/peps/pep-0503/#normalized-names) is registered in the PyPI registry.
+
     >>> check_pypi_name('pip')
     True
     >>> check_pypi_name('Pip')
     True
-    
-    It will return False if the package name, or any equivalent variation as defined by PEP 503 normalisation  
-    rules (https://www.python.org/dev/peps/pep-0503/#normalized-names) is not registered in the PyPI registry.
+
+    It will return False if the package name, or any equivalent variation as defined by PEP 503 normalisation
+     rules (https://www.python.org/dev/peps/pep-0503/#normalized-names) is not registered in the PyPI registry.
 
     >>> check_pypi_name('testy_mc-test_case-has.a.cousin_who_should_never_write_a_package')
     False
-    
-    :param pypi_package_name: 
-    :param pypi_registry_host: 
-    :return: 
+
+    :param pypi_package_name:
+    :param pypi_registry_host:
+    :return:
     """
     if pypi_registry_host is None:
         pypi_registry_host = 'pypi.python.org'
-
-    # req = urllib.request.Request("https://{}/simple/{}".format(pypi_registry_host, pypi_package_name), method="HEAD")
-    # opener = urllib.request.build_opener(NoRedirection)
-    # resp = opener.open(req)
-    # http_response_code = resp.getcode()
-    # return {200: True, 404: False}[http_response_code]
 
     # Just a helpful reminder why this bytearray size was chosen.
     #                            HTTP/1.1 200 OK
@@ -95,5 +80,3 @@ def check_pypi_name(pypi_package_name, pypi_registry_host=None):
         return False
     else:
         NotImplementedError('A definitive answer was not found by primary or secondary lookups.')
-
-
