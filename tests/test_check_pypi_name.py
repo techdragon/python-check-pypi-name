@@ -3,7 +3,12 @@ import check_pypi_name
 
 # TODO: Convert this to a doctest, doctest exists, but coverage is not yet configured to work properly with doctests.
 def test_known_package_name():
-    assert check_pypi_name.check_pypi_name('requests')
+    assert check_pypi_name.check_pypi_name('pip')
+
+
+# TODO: Convert this to a doctest, doctest exists, but coverage is not yet configured to work properly with doctests.
+def test_package_name_redirect():
+    assert not check_pypi_name.check_pypi_name('Pip')
 
 
 # TODO: Convert this to a doctest, doctest exists, but coverage is not yet configured to work properly with doctests.
