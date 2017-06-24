@@ -1,0 +1,16 @@
+[paths]
+source =
+   src/check_pypi_name
+   */site-packages/check_pypi_name
+
+[run]
+branch = true
+source =
+    check_pypi_name
+    tests
+parallel = true
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*
