@@ -24,7 +24,7 @@ def read(*names, **kwargs):
 
 setup(
     name='check-pypi-name',
-    version='0.1.0',
+    version='0.2.0',
     license='BSD',
     description='Check if a package name is registered with PyPI',
     long_description='%s\n%s' % (
