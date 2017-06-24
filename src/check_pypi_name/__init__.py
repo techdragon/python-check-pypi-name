@@ -47,16 +47,17 @@ def check_pypi_name(pypi_package_name, pypi_registry_host=None):
     ]))
     ssl_http_socket.recv_into(receive_buffer)
 
-    ssl_http_socket.shutdown(1)
-    ssl_http_socket.close()
-
     # Early return when possible.
     if b'HTTP/1.1 200' in receive_buffer:
+        ssl_http_socket.shutdown(1)
+        ssl_http_socket.close()
         return True
     elif b'HTTP/1.1 404' in receive_buffer:
+        ssl_http_socket.shutdown(1)
+        ssl_http_socket.close()
         return False
 
-    remaining_bytes = ssl_http_socket.recv(1024)
+    remaining_bytes = ssl_http_socket.recv(2048)
     redirect_path_location_start = remaining_bytes.find(b'Location:') + 10
     redirect_path_location_end = remaining_bytes.find(b'\r\n', redirect_path_location_start)
     # Append the trailing slash to avoid a needless extra redirect.
@@ -64,6 +65,9 @@ def check_pypi_name(pypi_package_name, pypi_registry_host=None):
 
     ssl_http_socket.shutdown(1)
     ssl_http_socket.close()
+
+    # Reset the bytearray to empty
+    # receive_buffer = bytearray(b'------------')
 
     ssl_http_socket = context.wrap_socket(socket.socket(socket.AF_INET), server_hostname=pypi_registry_host)
     ssl_http_socket.connect((pypi_registry_host, 443))
