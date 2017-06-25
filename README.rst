@@ -65,7 +65,7 @@ Overview
 
 Check if a package name is registered with PyPI
 
-* Free software: BSD license
+* Free software: MIT license
 
 Installation
 ============
