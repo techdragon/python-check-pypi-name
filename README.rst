@@ -44,9 +44,9 @@ Overview
     :alt: PyPI Package latest release
     :target: https://pypi.python.org/pypi/check-pypi-name
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/techdragon/python-check-pypi-name/v0.3.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/techdragon/python-check-pypi-name/v0.4.0.svg
     :alt: Commits since latest release
-    :target: https://github.com/techdragon/python-check-pypi-name/compare/v0.3.0...master
+    :target: https://github.com/techdragon/python-check-pypi-name/compare/v0.4.0...master
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/check-pypi-name.svg
     :alt: PyPI Wheel
